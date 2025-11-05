@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ForexEdge Trading Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
+            color: #0f172a;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            border-bottom: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+        
+        .settings-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            color: #64748b;
+        }
+        
+        .main-content {
+            padding: 16px;
+            padding-bottom: 100px;
+        }
+        
+        .currency-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .currency-logo {
+            height: 48px;
+            width: 48px;
+            object-fit: contain;
+        }
+        
+        .currency-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .currency-subtitle {
+            font-size: 14px;
+            color: #64748b;
+        }
+        
+        .chart-container {
+            position: relative;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 24px;
+            height: 400px;
+            touch-action: none;
+        }
+        
+        canvas {
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+        }
+        
+        .chart-tools {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            display: none;
+            gap: 8px;
+            z-index: 10;
+        }
+        
+        .chart-tools.admin {
+            display: flex;
+        }
+        
+        .tool-btn {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .tool-btn:hover {
+            background: #f1f5f9;
+        }
+        
+        .tool-btn.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+        
+        .tool-btn.finish {
+            background: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+        
+        .btn {
+            height: 56px;
+            border: none;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            opacity: 0.6;
+        }
+        
+        .btn-withdrawal {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .btn-trade {
+            background: #10b981;
+            color: white;
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            padding: 12px 16px;
+        }
+        
+        .nav-items {
+            display: flex;
+            justify-content: space-around;
+            max-width: 448px;
+            margin: 0 auto;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .nav-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .nav-icon.inactive {
+            background: #e2e8f0;
+            color: #64748b;
+        }
+        
+        .nav-icon.active {
+            background: #0f172a;
+            color: white;
+        }
+        
+        .nav-label {
+            font-size: 12px;
+            color: #64748b;
+        }
+        
+        .nav-label.active {
+            color: #0f172a;
+            font-weight: 600;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .modal.open {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            max-width: 400px;
+            width: 90%;
+        }
+        
+        .modal-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+        
+        .input-group {
+            margin-bottom: 16px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        
+        .btn-secondary {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: #0f172a;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-section">
+            <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_690ba922fbe430d3664faeaa/fa08d83cb_Screenshot_20250930_020839_Gallery.jpg" 
+                 alt="ForexEdge" class="logo">
+        </div>
+        <button class="settings-btn" onclick="openSettings()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M12 1v6m0 6v6"></path>
+            </svg>
+        </button>
+    </div>
+
+    <div class="main-content">
+        <div class="currency-header">
+            <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_690ba922fbe430d3664faeaa/fa08d83cb_Screenshot_20250930_020839_Gallery.jpg" 
+                 alt="ForexEdge" class="currency-logo">
+            <div>
+                <div class="currency-title">EUR/USD</div>
+                <div class="currency-subtitle">European Euro / US Dollar</div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-tools" id="chartTools">
+                <button class="tool-btn" id="drawBtn" onclick="toggleDraw()">✏️ Draw</button>
+                <button class="tool-btn finish" id="finishBtn" onclick="finishLine()" style="display:none;">✓ Finish</button>
+                <button class="tool-btn" onclick="clearDrawings()">🗑️ Clear</button>
+            </div>
+            <canvas id="chartCanvas"></canvas>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-withdrawal">Withdrawal</button>
+            <button class="btn btn-trade">Trade</button>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <div class="nav-items">
+            <button class="nav-item">
+                <div class="nav-icon inactive">A</div>
+                <span class="nav-label">Accounts</span>
+            </button>
+            <button class="nav-item">
+                <div class="nav-icon active">T</div>
+                <span class="nav-label active">Trade</span>
+            </button>
+            <button class="nav-item">
+                <div class="nav-icon inactive">I</div>
+                <span class="nav-label">Insights</span>
+            </button>
+            <button class="nav-item">
+                <div class="nav-icon inactive">P</div>
+                <span class="nav-label">Performance</span>
+            </button>
+            <button class="nav-item">
+                <div class="nav-icon inactive">Pr</div>
+                <span class="nav-label">Profile</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-title">Admin Login</div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="passwordInput" placeholder="Enter password">
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-secondary" onclick="closeSettings()">Cancel</button>
+                <button class="btn-primary" onclick="authenticate()">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('chartCanvas');
+        const ctx = canvas.getContext('2d');
+        let drawMode = false;
+        let lines = [];
+        let currentPoints = [];
+        let isAuthenticated = false;
+
+        function resizeCanvas() {
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+            drawChart();
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function drawChart() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw grid
+            ctx.strokeStyle = '#f1f5f9';
+            ctx.lineWidth = 1;
+            for (let i = 0; i < canvas.width; i += 40) {
+                ctx.beginPath();
+                ctx.moveTo(i, 0);
+                ctx.lineTo(i, canvas.height);
+                ctx.stroke();
+            }
+            for (let i = 0; i < canvas.height; i += 40) {
+                ctx.beginPath();
+                ctx.moveTo(0, i);
+                ctx.lineTo(canvas.width, i);
+                ctx.stroke();
+            }
+            
+            // Draw completed lines
+            lines.forEach(line => {
+                if (line.length > 1) {
+                    ctx.strokeStyle = '#3b82f6';
+                    ctx.lineWidth = 4;
+                    ctx.lineCap = 'round';
+                    ctx.lineJoin = 'round';
+                    ctx.beginPath();
+                    ctx.moveTo(line[0].x, line[0].y);
+                    for (let i = 1; i < line.length; i++) {
+                        ctx.lineTo(line[i].x, line[i].y);
+                    }
+                    ctx.stroke();
+                }
+            });
+            
+            // Draw current line
+            if (currentPoints.length > 0) {
+                ctx.strokeStyle = '#3b82f6';
+                ctx.lineWidth = 4;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                
+                if (currentPoints.length > 1) {
+                    ctx.beginPath();
+                    ctx.moveTo(currentPoints[0].x, currentPoints[0].y);
+                    for (let i = 1; i < currentPoints.length; i++) {
+                        ctx.lineTo(currentPoints[i].x, currentPoints[i].y);
+                    }
+                    ctx.stroke();
+                }
+                
+                // Draw points
+                currentPoints.forEach((point, idx) => {
+                    ctx.fillStyle = '#3b82f6';
+                    ctx.beginPath();
+                    ctx.arc(point.x, point.y, 6, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.strokeStyle = '#ffffff';
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                });
+            }
+        }
+
+        function toggleDraw() {
+            if (!isAuthenticated) {
+                alert('Please login as admin first');
+                return;
+            }
+            drawMode = !drawMode;
+            const btn = document.getElementById('drawBtn');
+            const finishBtn = document.getElementById('finishBtn');
+            
+            if (drawMode) {
+                btn.classList.add('active');
+                currentPoints = [];
+            } else {
+                btn.classList.remove('active');
+                finishBtn.style.display = 'none';
+                if (currentPoints.length > 1) {
+                    lines.push([...currentPoints]);
+                }
+                currentPoints = [];
+                drawChart();
+            }
+        }
+
+        function finishLine() {
+            if (currentPoints.length > 1) {
+                lines.push([...currentPoints]);
+                currentPoints = [];
+                document.getElementById('finishBtn').style.display = 'none';
+                drawChart();
+            }
+        }
+
+        function clearDrawings() {
+            lines = [];
+            currentPoints = [];
+            drawChart();
+        }
+
+        canvas.addEventListener('click', (e) => {
+            if (!drawMode) return;
+            e.preventDefault();
+            
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            currentPoints.push({ x, y });
+            
+            if (currentPoints.length > 1) {
+                document.getElementById('finishBtn').style.display = 'block';
+            }
+            
+            drawChart();
+        });
+
+        canvas.addEventListener('touchstart', (e) => {
+            if (!drawMode) return;
+            e.preventDefault();
+            
+            const rect = canvas.getBoundingClientRect();
+            const touch = e.touches[0];
+            const x = touch.clientX - rect.left;
+            const y = touch.clientY - rect.top;
+            
+            currentPoints.push({ x, y });
+            
+            if (currentPoints.length > 1) {
+                document.getElementById('finishBtn').style.display = 'block';
+            }
+            
+            drawChart();
+        });
+
+        function openSettings() {
+            document.getElementById('settingsModal').classList.add('open');
+        }
+
+        function closeSettings() {
+            document.getElementById('settingsModal').classList.remove('open');
+        }
+
+        function authenticate() {
+            const password = document.getElementById('passwordInput').value;
+            if (password === 'VNAXXTTM') {
+                isAuthenticated = true;
+                document.getElementById('chartTools').classList.add('admin');
+                alert('Admin login successful! You can now draw on the chart.');
+                closeSettings();
+            } else {
+                alert('Incorrect password');
+            }
+        }
+
+        drawChart();
+    </script>
+</body>
+</html>
