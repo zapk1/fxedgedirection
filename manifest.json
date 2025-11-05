@@ -1,0 +1,21 @@
+{
+  "name": "Fxedge Direction",
+  "short_name": "Fxedge Direction",
+  "description": "Spot the market direction cash 25 times deposit profit",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F5E427",
+  "theme_color": "#F5E427",
+  "icons": [
+    {
+      "src": "https://i.postimg.cc/gjJdjFWh/471765b9a-logo.jpg",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://i.postimg.cc/gjJdjFWh/471765b9a-logo.jpg",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
