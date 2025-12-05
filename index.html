@@ -1,1200 +1,1578 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-
-
-
-<link rel="manifest" href="manifest.json">
-     <meta name="theme-color" content="#2196f3">
-
-    <link rel="icon" href="https://i.postimg.cc/FR1kt6B0/Chat-GPT-Image-Nov-6-2025-12-25-21-AM.png" type="image/png">
-     <link rel="stylesheet" href="style.css">
-
-
-
-
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ForexEdge Trading Platform</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>EmailMe - Contact Storage</title>
+    <link rel="icon" href__="https://cdn-icons-png.flaticon.com/512/732/732200.png" type="image/png">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        :root {
+            --bg-primary: #0f0f23;
+            --bg-secondary: #1a1a2e;
+            --bg-tertiary: #25253a;
+            --bg-hover: #32324a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b2;
+            --accent-blue: #667eea;
+            --accent-purple: #764ba2;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --accent-orange: #f59e0b;
+            --border-color: #32324a;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .light-theme {
+            --bg-primary: #f5f7fa;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #e8ecf1;
+            --bg-hover: #dde2e8;
+            --text-primary: #1a1a2e;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #ffffff;
-            color: #0f172a;
-            overflow-x: hidden;
-        }
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 16px;
-            border-bottom: 1px solid #e2e8f0;
-            background: white;
-        }
-        
-        .logo {
-            height: 40px;
-            width: auto;
-        }
-        
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            transition: all 0.3s ease;
         }
 
-        .brand-name {
-            font-size: 18px;
-            font-weight: bold;
-            color: #0f172a;
+        /* ========== AUTH SCREENS ========== */
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #25253a 100%);
         }
-        
-        .header-btns {
+
+        .auth-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .auth-logo {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .auth-logo img {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 16px;
+        }
+
+        .auth-logo h1 {
+            font-size: 32px;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .auth-logo p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .auth-tabs {
             display: flex;
             gap: 8px;
-        }
-        
-        .settings-btn, .logout-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            color: #64748b;
-            font-size: 13px;
-        }
-        
-        .logout-btn {
-            background: #ef4444;
-            color: white;
-            border-radius: 6px;
-            padding: 6px 12px;
-            display: none;
-        }
-        
-        .logout-btn.show {
-            display: block;
-        }
-        
-        .main-content {
-            padding: 16px;
-            padding-bottom: 100px;
-        }
-        
-        .currency-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
+            margin-bottom: 28px;
+            background: var(--bg-tertiary);
+            padding: 6px;
+            border-radius: 14px;
         }
 
-        .currency-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .currency-logo {
-            height: 48px;
-            width: 48px;
-            object-fit: contain;
-        }
-        
-        .currency-title {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        
-        .currency-subtitle {
-            font-size: 14px;
-            color: #64748b;
-        }
-
-        .date-display {
-            font-size: 14px;
-            color: #64748b;
-            font-weight: 500;
-        }
-
-        .tools-bar {
-            display: flex;
-            gap: 8px;
+        .auth-tab {
+            flex: 1;
             padding: 12px;
-            background: #f8fafc;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            overflow-x: auto;
-        }
-
-        .tool-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            padding: 8px 12px;
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 10px;
             cursor: pointer;
-            min-width: 60px;
             transition: all 0.2s;
         }
 
-        .tool-item:hover {
-            background: #f1f5f9;
+        .auth-tab.active {
+            background: var(--gradient);
+            color: #fff;
         }
 
-        .tool-item.active {
-            background: #3b82f6;
-            color: white;
-            border-color: #3b82f6;
+        .auth-tab:hover:not(.active) {
+            color: var(--text-primary);
         }
 
-        .tool-icon {
-            font-size: 20px;
-        }
-
-        .tool-label {
-            font-size: 10px;
-            font-weight: 500;
-        }
-        
-        .chart-container {
-            position: relative;
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 24px;
-            height: 450px;
-            touch-action: none;
-        }
-        
-        canvas {
-            width: 100%;
-            height: 100%;
-            touch-action: none;
-        }
-        
-        .chart-tools {
-            position: absolute;
-            top: 16px;
-            right: 16px;
+        .auth-form {
             display: none;
-            gap: 8px;
-            z-index: 10;
-            flex-wrap: wrap;
-        }
-        
-        .chart-tools.admin {
-            display: flex;
-        }
-        
-        .tool-btn {
-            background: white;
-            border: 1px solid #e2e8f0;
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .tool-btn:hover {
-            background: #f1f5f9;
-        }
-        
-        .tool-btn.active {
-            background: #3b82f6;
-            color: white;
-            border-color: #3b82f6;
-        }
-        
-        .tool-btn.finish {
-            background: #10b981;
-            color: white;
-            border-color: #10b981;
         }
 
-        .tool-btn.clear-my {
-            background: #f59e0b;
-            color: white;
-            border-color: #f59e0b;
-        }
-        
-        .action-buttons {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-top: 24px;
-        }
-        
-        .btn {
-            height: 56px;
-            border: none;
-            border-radius: 16px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        
-        .btn-withdrawal {
-            background: #ef4444;
-            color: white;
-        }
-        
-        .btn-withdrawal:hover {
-            background: #dc2626;
-        }
-        
-        .btn-trade {
-            background: #10b981;
-            color: white;
-        }
-        
-        .btn-trade:hover {
-            background: #059669;
-        }
-
-        .education-section {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 20px;
-            margin-top: 24px;
-        }
-
-        .education-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 16px;
-            color: #0f172a;
-        }
-
-        .education-content {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .education-item {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .education-item h3 {
-            font-size: 16px;
-            font-weight: 600;
-            color: #0f172a;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .education-item p {
-            font-size: 14px;
-            color: #64748b;
-            line-height: 1.6;
-        }
-
-        .education-item ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .education-item li {
-            font-size: 14px;
-            color: #64748b;
-            padding: 4px 0;
-        }
-
-        .reward-highlight {
-            background: #d1fae5;
-            color: #047857;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 600;
-        }
-        
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            border-top: 1px solid #e2e8f0;
-            padding: 12px 16px;
-        }
-        
-        .nav-items {
-            display: flex;
-            justify-content: space-around;
-            max-width: 448px;
-            margin: 0 auto;
-        }
-        
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .nav-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 14px;
-        }
-        
-        .nav-icon.inactive {
-            background: #e2e8f0;
-            color: #64748b;
-        }
-        
-        .nav-icon.active {
-            background: #0f172a;
-            color: white;
-        }
-        
-        .nav-label {
-            font-size: 12px;
-            color: #64748b;
-        }
-        
-        .nav-label.active {
-            color: #0f172a;
-            font-weight: 600;
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-        
-        .modal.open {
-            display: flex;
-        }
-        
-        .modal-content {
-            background: white;
-            padding: 24px;
-            border-radius: 12px;
-            max-width: 400px;
-            width: 90%;
-        }
-        
-        .modal-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 16px;
-        }
-        
-        .input-group {
-            margin-bottom: 16px;
-        }
-        
-        .input-group label {
+        .auth-form.active {
             display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: 500;
-        }
-        
-        .input-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-        
-        .modal-buttons {
-            display: flex;
-            gap: 12px;
-            margin-top: 24px;
-        }
-        
-        .btn-secondary {
-            flex: 1;
-            padding: 12px;
-            border: 1px solid #e2e8f0;
-            background: white;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 500;
-        }
-        
-        .btn-primary {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            background: #0f172a;
-            color: white;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
         }
 
-        .text-input-overlay {
-            position: absolute;
-            background: white;
-            border: 2px solid #3b82f6;
-            border-radius: 8px;
-            padding: 8px;
+        .auth-input-group {
+            margin-bottom: 20px;
+        }
+
+        .auth-input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .auth-input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .auth-input-group input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        .auth-input-group input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--gradient);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .auth-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .auth-error {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid var(--accent-red);
+            color: var(--accent-red);
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            margin-bottom: 20px;
             display: none;
+        }
+
+        .auth-error.show {
+            display: block;
+        }
+
+        .auth-success {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid var(--accent-green);
+            color: var(--accent-green);
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .auth-success.show {
+            display: block;
+        }
+
+        .password-requirements {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        /* ========== MAIN APP ========== */
+        .app-container {
+            display: none;
+        }
+
+        .app-container.active {
+            display: block;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
             z-index: 100;
         }
 
-        .text-input-overlay input {
-            border: none;
-            outline: none;
-            font-size: 14px;
-            width: 200px;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .text-input-overlay button {
-            margin-left: 8px;
-            padding: 4px 12px;
-            background: #3b82f6;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        .logo img {
+            width: 36px;
+            height: 36px;
         }
 
-        .delete-btn {
-            position: absolute;
-            background: #ef4444;
-            color: white;
-            border: none;
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-tertiary);
+            padding: 8px 16px;
+            border-radius: 12px;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            width: 24px;
-            height: 24px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .user-email {
+            font-size: 13px;
+            color: var(--text-secondary);
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .theme-btn, .add-btn-header, .logout-btn {
+            background: var(--bg-tertiary);
+            border: none;
+            padding: 10px 16px;
+            border-radius: 10px;
             cursor: pointer;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-btn:hover, .add-btn-header:hover {
+            background: var(--bg-hover);
+        }
+
+        .logout-btn {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--accent-red);
+        }
+
+        .logout-btn:hover {
+            background: var(--accent-red);
+            color: #fff;
+        }
+
+        .add-btn-header {
+            background: var(--gradient);
+            color: #fff;
+        }
+
+        .add-btn-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Search and Filter */
+        .search-filter-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 14px 14px 48px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        .search-box::before {
+            content: '🔍';
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+        }
+
+        .filter-select {
+            padding: 14px 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 14px;
+            cursor: pointer;
+            min-width: 150px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+        }
+
+        /* Contacts Grid */
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-card:hover::before {
+            opacity: 1;
+        }
+
+        .contact-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .contact-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-blue);
+            background: var(--bg-tertiary);
+        }
+
+        .contact-info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .contact-info .email {
+            font-size: 14px;
+            color: var(--accent-blue);
+            word-break: break-all;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .detail-row span:first-child {
+            font-size: 16px;
+        }
+
+        .contact-category {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
             font-size: 12px;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        .category-personal { background: rgba(102, 126, 234, 0.2); color: var(--accent-blue); }
+        .category-work { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .category-family { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); }
+        .category-friends { background: rgba(245, 158, 11, 0.2); color: var(--accent-orange); }
+        .category-other { background: rgba(118, 75, 162, 0.2); color: var(--accent-purple); }
+
+        .contact-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .action-btn.edit {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .action-btn.delete {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--accent-red);
+        }
+
+        .action-btn.copy {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-green);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .favorite-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .favorite-btn:hover {
+            transform: scale(1.2);
+        }
+
+        /* Modal */
+        .modal {
             display: none;
-            z-index: 50;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal.open {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border-radius: 24px;
+            padding: 32px;
+            width: 100%;
+            max-width: 500px;
+            border: 1px solid var(--border-color);
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--bg-tertiary);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-size: 18px;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            background: var(--accent-red);
+            color: #fff;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .input-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus,
+        .input-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .modal-btn.secondary {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .modal-btn.primary {
+            background: var(--gradient);
+            border: none;
+            color: #fff;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state .icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .empty-state h3 {
+            font-size: 20px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .empty-state p {
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--accent-green);
+            color: #fff;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            display: none;
+            animation: slideIn 0.3s ease;
+            z-index: 2000;
+        }
+
+        .toast.show {
+            display: block;
+        }
+
+        .toast.error {
+            background: var(--accent-red);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 16px;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .logo h1 {
+                font-size: 20px;
+            }
+
+            .header-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .user-info {
+                display: none;
+            }
+
+            .main-container {
+                padding: 16px;
+            }
+
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contacts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .input-row {
+                grid-template-columns: 1fr;
+            }
+
+            .add-btn-header span:last-child {
+                display: none;
+            }
+
+            .search-filter-bar {
+                flex-direction: column;
+            }
+
+            .filter-select {
+                width: 100%;
+            }
+
+            .auth-box {
+                padding: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-actions {
+                gap: 8px;
+            }
+
+            .theme-btn, .add-btn-header, .logout-btn {
+                padding: 10px 12px;
+            }
+
+            .stat-card {
+                padding: 16px;
+            }
+
+            .stat-value {
+                font-size: 26px;
+            }
+
+            .contact-card {
+                padding: 20px;
+            }
+
+            .contact-avatar {
+                width: 50px;
+                height: 50px;
+            }
+
+            .contact-info h3 {
+                font-size: 16px;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-hover);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-blue);
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div>
-            <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_690ba922fbe430d3664faeaa/fa08d83cb_Screenshot_20250930_020839_Gallery.jpg" 
-                 alt="ForexEdge" class="logo">
+
+    <!-- ========== AUTH SCREEN ========== -->
+    <div class="auth-container" id="authContainer">
+        <div class="auth-box">
+            <div class="auth-logo">
+                <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="EmailMe">
+                <h1>EmailMe</h1>
+                <p>Store and manage your contacts securely</p>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuthTab('login')">Login</button>
+                <button class="auth-tab" onclick="switchAuthTab('register')">Register</button>
+            </div>
+
+            <div class="auth-error" id="authError"></div>
+            <div class="auth-success" id="authSuccess"></div>
+
+            <!-- Login Form -->
+            <form class="auth-form active" id="loginForm" onsubmit="handleLogin(event)">
+                <div class="auth-input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="auth-input-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="auth-btn" id="loginBtn">
+                    <span>🔐</span> Login
+                </button>
+            </form>
+
+            <!-- Register Form -->
+            <form class="auth-form" id="registerForm" onsubmit="handleRegister(event)">
+                <div class="auth-input-group">
+                    <label>Full Name</label>
+                    <input type="text" id="registerName" placeholder="Enter your name" required>
+                </div>
+                <div class="auth-input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="registerEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="auth-input-group">
+                    <label>Password</label>
+                    <input type="password" id="registerPassword" placeholder="Create a password" required minlength="6">
+                    <p class="password-requirements">Password must be at least 6 characters</p>
+                </div>
+                <div class="auth-input-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="registerConfirmPassword" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="auth-btn" id="registerBtn">
+                    <span>✨</span> Create Account
+                </button>
+            </form>
         </div>
-        <div class="header-right">
-            <span class="brand-name">ForexEdge</span>
-            <div class="header-btns">
-                <button class="settings-btn" onclick="openSettings()">⚙️</button>
-                <button class="logout-btn" id="logoutBtn" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- ========== MAIN APP ========== -->
+    <div class="app-container" id="appContainer">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="EmailMe">
+                <h1>EmailMe</h1>
+            </div>
+            <div class="header-actions">
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatarHeader">👤</div>
+                    <span class="user-email" id="userEmailHeader"></span>
+                </div>
+                <button class="theme-btn" onclick="toggleTheme()" title="Toggle Theme">
+                    <span id="themeIcon">🌙</span>
+                </button>
+                <button class="add-btn-header" onclick="openAddModal()">
+                    <span>➕</span>
+                    <span>Add Contact</span>
+                </button>
+                <button class="logout-btn" onclick="handleLogout()">
+                    <span>🚪</span>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Container -->
+        <div class="main-container">
+            <!-- Stats Bar -->
+            <div class="stats-bar">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalContacts">0</div>
+                    <div class="stat-label">Total Contacts</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="favoriteContacts">0</div>
+                    <div class="stat-label">Favorites</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="workContacts">0</div>
+                    <div class="stat-label">Work</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="personalContacts">0</div>
+                    <div class="stat-label">Personal</div>
+                </div>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="search-filter-bar">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search by name or email..." onkeyup="filterContacts()">
+                </div>
+                <select class="filter-select" id="categoryFilter" onchange="filterContacts()">
+                    <option value="all">All Categories</option>
+                    <option value="personal">Personal</option>
+                    <option value="work">Work</option>
+                    <option value="family">Family</option>
+                    <option value="friends">Friends</option>
+                    <option value="other">Other</option>
+                </select>
+                <select class="filter-select" id="favoriteFilter" onchange="filterContacts()">
+                    <option value="all">All Contacts</option>
+                    <option value="favorites">Favorites Only</option>
+                </select>
+            </div>
+
+            <!-- Contacts Grid -->
+            <div class="contacts-grid" id="contactsGrid">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading contacts...</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="main-content">
-        <div class="currency-header">
-            <div class="currency-info">
-                <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_690ba922fbe430d3664faeaa/fa08d83cb_Screenshot_20250930_020839_Gallery.jpg" 
-                     alt="ForexEdge" class="currency-logo">
-                <div>
-                    <div class="currency-title">EUR/USD</div>
-                    <div class="currency-subtitle">European Euro / US Dollar</div>
-                </div>
-            </div>
-            <div class="date-display" id="dateDisplay"></div>
-        </div>
-
-        <div class="tools-bar" id="toolsBar">
-            <div class="tool-item" onclick="selectTool('horizontal')" data-tool="horizontal">
-                <div class="tool-icon">━</div>
-                <div class="tool-label">Horizontal</div>
-            </div>
-            <div class="tool-item" onclick="selectTool('vertical')" data-tool="vertical">
-                <div class="tool-icon">┃</div>
-                <div class="tool-label">Vertical</div>
-            </div>
-            <div class="tool-item" onclick="selectTool('trendline')" data-tool="trendline">
-                <div class="tool-icon">╱</div>
-                <div class="tool-label">Trendline</div>
-            </div>
-            <div class="tool-item" onclick="selectTool('text')" data-tool="text">
-                <div class="tool-icon">T</div>
-                <div class="tool-label">Text</div>
-            </div>
-            <div class="tool-item" onclick="clearMyPredictions()" data-tool="clear">
-                <div class="tool-icon">🗑️</div>
-                <div class="tool-label">Clear Mine</div>
-            </div>
-        </div>
-
-        <div class="chart-container">
-            <div class="chart-tools" id="adminTools">
-                <button class="tool-btn" id="drawBtn" onclick="toggleAdminDraw()">✏️ Draw Chart</button>
-                <button class="tool-btn finish" id="finishBtn" onclick="finishAdminLine()" style="display:none;">✓ Finish</button>
-                <button class="tool-btn" onclick="clearAdminDrawings()">🗑️ Clear Chart</button>
-            </div>
-            <canvas id="chartCanvas"></canvas>
-            <div class="text-input-overlay" id="textInputOverlay">
-                <input type="text" id="textInput" placeholder="Enter text...">
-                <button onclick="addTextAnnotation()">Add</button>
-            </div>
-        </div>
-
-        <div class="action-buttons">
-            <button class="btn btn-withdrawal" onclick="handleWithdrawal()">Withdrawal</button>
-            <button class="btn btn-trade" onclick="handleInvest()">Invest</button>
-        </div>
-
-        <div class="education-section">
-            <div class="education-header">
-                📚 How To Invest & Trade
-            </div>
-            <div class="education-content">
-                <div class="education-item">
-                    <h3>📈 Step 1: Learn to Predict</h3>
-                    <p>Use the tools above the chart to analyze and predict market movements:</p>
-                    <ul>
-                        <li>━ <strong>Horizontal lines</strong> - Mark support/resistance levels. Tap to place, drag to move.</li>
-                        <li>┃ <strong>Vertical lines</strong> - Mark important time points. Tap to place.</li>
-                        <li>╱ <strong>Trendlines</strong> - Connect two points to show trend direction. Tap twice to draw.</li>
-                        <li>T <strong>Text tool</strong> - Add labels to your analysis (e.g., "Breakout here", "Support level").</li>
-                    </ul>
-                </div>
-
-                <div class="education-item">
-                    <h3>🎯 Step 2: Make Your Predictions</h3>
-                    <p>Each day shows a new market pattern. Study the admin's chart (blue lines) carefully. Use your tools to predict where the market will go next. Your predictions are private - only you can see them!</p>
-                </div>
-
-                <div class="education-item">
-                    <h3>💰 Step 3: Ready to Invest?</h3>
-                    <p>Once you're confident in your prediction skills, click the green <strong>"Invest"</strong> button above. This will guide you through:</p>
-                    <ul>
-                        <li>• Creating your trading account</li>
-                        <li>• Making your minimum investment (R10,000)</li>
-                        <li>• Placing your first trade</li>
-                        <li>• Understanding risk management</li>
-                    </ul>
-                </div>
-
-                <div class="education-item">
-                    <h3>🏆 Rewards & Profits</h3>
-                    <div class="reward-highlight">
-                        Correct predictions earn 25x your investment!<br>
-                        Example: R10,000 → R250,000 potential return
-                    </div>
-                </div>
-
-                <div class="education-item">
-                    <h3>📊 Common Trading Patterns</h3>
-                    <ul>
-                        <li>• <strong>Head and Shoulders</strong> - Trend reversal pattern</li>
-                        <li>• <strong>Double Top/Bottom</strong> - Strong reversal signal</li>
-                        <li>• <strong>Triangle Patterns</strong> - Breakout indicators</li>
-                        <li>• <strong>Flag & Pennant</strong> - Continuation patterns</li>
-                        <li>• <strong>Support & Resistance</strong> - Key price levels</li>
-                    </ul>
-                </div>
-
-                <div class="education-item">
-                    <h3>⚠️ Important Tips</h3>
-                    <ul>
-                        <li>• Practice analyzing patterns before investing real money</li>
-                        <li>• The blue lines show the actual market movement (admin chart)</li>
-                        <li>• Your colored predictions are private and help you practice</li>
-                        <li>• The next day reveals if your prediction was correct</li>
-                        <li>• Only invest what you can afford to lose</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="bottom-nav">
-        <div class="nav-items">
-            <button class="nav-item">
-                <div class="nav-icon inactive">👤</div>
-                <span class="nav-label">Accounts</span>
-            </button>
-            <button class="nav-item">
-                <div class="nav-icon active">📊</div>
-                <span class="nav-label active">Trade</span>
-            </button>
-            <button class="nav-item">
-                <div class="nav-icon inactive">💡</div>
-                <span class="nav-label">Insights</span>
-            </button>
-            <button class="nav-item">
-                <div class="nav-icon inactive">📈</div>
-                <span class="nav-label">Performance</span>
-            </button>
-            <button class="nav-item">
-                <div class="nav-icon inactive">⚙️</div>
-                <span class="nav-label">Profile</span>
-            </button>
-        </div>
-    </div>
-
-    <div id="settingsModal" class="modal">
+    <!-- Add/Edit Modal -->
+    <div class="modal" id="contactModal">
         <div class="modal-content">
-            <div class="modal-title">Admin Login</div>
-            <div class="input-group">
-                <label>Password</label>
-                <input type="password" id="passwordInput" placeholder="Enter admin password">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div class="modal-title">
+                <span id="modalIcon">👤</span>
+                <span id="modalTitle">Add New Contact</span>
             </div>
+
+            <div class="input-group">
+                <label>Full Name *</label>
+                <input type="text" id="input
+2 hours ago
+king you gave unfinished html and the script finish html where you cutted up to the end of scriptv </script>
+
+an hour ago
+Revert this
+Base44 AI
+Base44
+Here's the rest of the HTML from where I cut off:
+
+            <div class="input-group">
+                <label>Full Name *</label>
+                <input type="text" id="inputName" placeholder="Enter full name">
+            </div>
+
+            <div class="input-group">
+                <label>Email Address *</label>
+                <input type="email" id="inputEmail" placeholder="email@example.com">
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="inputPhone" placeholder="+27 XX XXX XXXX">
+                </div>
+                <div class="input-group">
+                    <label>Category</label>
+                    <select id="inputCategory">
+                        <option value="personal">Personal</option>
+                        <option value="work">Work</option>
+                        <option value="family">Family</option>
+                        <option value="friends">Friends</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Company / Organization</label>
+                <input type="text" id="inputCompany" placeholder="Company name">
+            </div>
+
+            <div class="input-group">
+                <label>Profile Picture URL</label>
+                <input type="url" id="inputAvatar" placeholder="https://example.com/photo.jpg">
+            </div>
+
+            <div class="input-group">
+                <label>Notes</label>
+                <textarea id="inputNotes" placeholder="Add any notes about this contact..."></textarea>
+            </div>
+
             <div class="modal-buttons">
-                <button class="btn-secondary" onclick="closeSettings()">Cancel</button>
-                <button class="btn-primary" onclick="authenticate()">Login</button>
+                <button class="modal-btn secondary" onclick="closeModal()">Cancel</button>
+                <button class="modal-btn primary" onclick="saveContact()">
+                    <span id="saveButtonText">Save Contact</span>
+                </button>
             </div>
         </div>
     </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+        import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, orderBy, onSnapshot, where, getDoc, setDoc } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
 
         const firebaseConfig = {
-            apiKey: "AIzaSyCh14tX6MwH1sl1X0k8chnhiNNYU1l41cs",
-            authDomain: "forexedge-ea59e.firebaseapp.com",
-            projectId: "forexedge-ea59e",
-            storageBucket: "forexedge-ea59e.firebasestorage.app",
-            messagingSenderId: "1090680034458",
-            appId: "1:1090680034458:web:8916108ab2693f54837b23",
-            measurementId: "G-QZLYE04XSK"
+            apiKey: "AIzaSyDDMsvRTz9nPGDk8Ob_FPRc5Boov2FVt9w",
+            authDomain: "egn-portal.firebaseapp.com",
+            projectId: "egn-portal",
+            storageBucket: "egn-portal.firebasestorage.app",
+            messagingSenderId: "88252271549",
+            appId: "1:88252271549:web:80aa211a420e205c1720d4",
+            measurementId: "G-KYMBME9RDQ"
         };
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const auth = getAuth(app);
 
-        const canvas = document.getElementById('chartCanvas');
-        const ctx = canvas.getContext('2d');
-        let isAdminDrawing = false;
-        let adminDrawMode = false;
-        let adminLines = [];
-        let currentAdminLine = [];
-        let isAuthenticated = false;
+        // ============ STATE ============
+        let contacts = [];
+        let editingContactId = null;
+        let currentUser = null;
+        let unsubscribeContacts = null;
 
-        // User predictions stored in localStorage (private to each user)
-        let userPredictions = JSON.parse(localStorage.getItem('userPredictions') || '[]');
-        let textAnnotations = JSON.parse(localStorage.getItem('textAnnotations') || '[]');
-        let currentTool = null;
-        let currentPrediction = { type: null, points: [] };
-        let selectedElement = null;
-        let isDragging = false;
-        let dragOffset = { x: 0, y: 0 };
-
-        function saveUserData() {
-            localStorage.setItem('userPredictions', JSON.stringify(userPredictions));
-            localStorage.setItem('textAnnotations', JSON.stringify(textAnnotations));
-        }
-
-        function updateDate() {
-            const date = new Date();
-            const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
-            document.getElementById('dateDisplay').textContent = date.toLocaleDateString('en-US', options);
-        }
-        updateDate();
-
-        function resizeCanvas() {
-            const rect = canvas.getBoundingClientRect();
-            canvas.width = rect.width;
-            canvas.height = rect.height;
-            drawChart();
-        }
-
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        function drawChart() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Draw grid
-            ctx.strokeStyle = '#f1f5f9';
-            ctx.lineWidth = 1;
-            for (let i = 0; i < canvas.width; i += 40) {
-                ctx.beginPath();
-                ctx.moveTo(i, 0);
-                ctx.lineTo(i, canvas.height);
-                ctx.stroke();
-            }
-            for (let i = 0; i < canvas.height; i += 40) {
-                ctx.beginPath();
-                ctx.moveTo(0, i);
-                ctx.lineTo(canvas.width, i);
-                ctx.stroke();
-            }
-            
-            // Draw admin lines from Firebase (everyone sees these)
-            adminLines.forEach(line => {
-                if (line.length > 1) {
-                    ctx.strokeStyle = '#3b82f6';
-                    ctx.lineWidth = 3;
-                    ctx.lineCap = 'round';
-                    ctx.lineJoin = 'round';
-                    ctx.beginPath();
-                    ctx.moveTo(line[0].x, line[0].y);
-                    for (let i = 1; i < line.length; i++) {
-                        ctx.lineTo(line[i].x, line[i].y);
-                    }
-                    ctx.stroke();
-                }
-            });
-            
-            // Draw current admin line
-            if (currentAdminLine.length > 0) {
-                ctx.strokeStyle = '#3b82f6';
-                ctx.lineWidth = 3;
-                ctx.lineCap = 'round';
-                ctx.lineJoin = 'round';
-                ctx.beginPath();
-                ctx.moveTo(currentAdminLine[0].x, currentAdminLine[0].y);
-                for (let i = 1; i < currentAdminLine.length; i++) {
-                    ctx.lineTo(currentAdminLine[i].x, currentAdminLine[i].y);
-                }
-                ctx.stroke();
-
-                currentAdminLine.forEach(point => {
-                    ctx.fillStyle = '#3b82f6';
-                    ctx.beginPath();
-                    ctx.arc(point.x, point.y, 5, 0, Math.PI * 2);
-                    ctx.fill();
-                });
-            }
-
-            // Draw user predictions from localStorage (only this user sees these)
-            userPredictions.forEach((pred, index) => {
-                ctx.strokeStyle = '#f59e0b';
-                ctx.lineWidth = 2;
-                ctx.setLineDash([5, 5]);
-                
-                if (pred.type === 'horizontal' && pred.points.length > 0) {
-                    ctx.beginPath();
-                    ctx.moveTo(0, pred.points[0].y);
-                    ctx.lineTo(canvas.width, pred.points[0].y);
-                    ctx.stroke();
-                    
-                    // Draw draggable handle
-                    ctx.fillStyle = '#f59e0b';
-                    ctx.beginPath();
-                    ctx.arc(canvas.width / 2, pred.points[0].y, 6, 0, Math.PI * 2);
-                    ctx.fill();
-                } else if (pred.type === 'vertical' && pred.points.length > 0) {
-                    ctx.beginPath();
-                    ctx.moveTo(pred.points[0].x, 0);
-                    ctx.lineTo(pred.points[0].x, canvas.height);
-                    ctx.stroke();
-                    
-                    // Draw draggable handle
-                    ctx.fillStyle = '#f59e0b';
-                    ctx.beginPath();
-                    ctx.arc(pred.points[0].x, canvas.height / 2, 6, 0, Math.PI * 2);
-                    ctx.fill();
-                } else if (pred.type === 'trendline' && pred.points.length === 2) {
-                    ctx.beginPath();
-                    ctx.moveTo(pred.points[0].x, pred.points[0].y);
-                    ctx.lineTo(pred.points[1].x, pred.points[1].y);
-                    ctx.stroke();
-                    
-                    // Draw handles on both ends
-                    pred.points.forEach(point => {
-                        ctx.fillStyle = '#f59e0b';
-                        ctx.beginPath();
-                        ctx.arc(point.x, point.y, 6, 0, Math.PI * 2);
-                        ctx.fill();
-                    });
-                }
-                
-                ctx.setLineDash([]);
-            });
-
-            // Draw text annotations from localStorage
-            textAnnotations.forEach((text, index) => {
-                ctx.fillStyle = '#0f172a';
-                ctx.font = 'bold 14px Arial';
-                ctx.fillText(text.content, text.x, text.y);
-                
-                // Draw small circle for dragging/deleting
-                ctx.fillStyle = '#f59e0b';
-                ctx.beginPath();
-                ctx.arc(text.x - 5, text.y - 5, 4, 0, Math.PI * 2);
-                ctx.fill();
-            });
-
-            // Draw current prediction being drawn
-            if (currentPrediction.points.length > 0) {
-                ctx.strokeStyle = '#f59e0b';
-                ctx.lineWidth = 2;
-                ctx.setLineDash([5, 5]);
-                
-                const p = currentPrediction.points[0];
-                if (currentPrediction.type === 'horizontal') {
-                    ctx.beginPath();
-                    ctx.moveTo(0, p.y);
-                    ctx.lineTo(canvas.width, p.y);
-                    ctx.stroke();
-                } else if (currentPrediction.type === 'vertical') {
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, 0);
-                    ctx.lineTo(p.x, canvas.height);
-                    ctx.stroke();
-                } else if (currentPrediction.type === 'trendline' && currentPrediction.points.length === 2) {
-                    ctx.beginPath();
-                    ctx.moveTo(currentPrediction.points[0].x, currentPrediction.points[0].y);
-                    ctx.lineTo(currentPrediction.points[1].x, currentPrediction.points[1].y);
-                    ctx.stroke();
-                }
-                
-                ctx.setLineDash([]);
-
-                currentPrediction.points.forEach(point => {
-                    ctx.fillStyle = '#f59e0b';
-                    ctx.beginPath();
-                    ctx.arc(point.x, point.y, 5, 0, Math.PI * 2);
-                    ctx.fill();
-                });
-            }
-        }
-
-        function getElementAtPosition(x, y) {
-            // Check text annotations
-            for (let i = textAnnotations.length - 1; i >= 0; i--) {
-                const text = textAnnotations[i];
-                const dist = Math.sqrt(Math.pow(x - text.x, 2) + Math.pow(y - text.y, 2));
-                if (dist < 20) {
-                    return { type: 'text', index: i, data: text };
-                }
-            }
-            
-            // Check predictions
-            for (let i = userPredictions.length - 1; i >= 0; i--) {
-                const pred = userPredictions[i];
-                if (pred.type === 'horizontal') {
-                    if (Math.abs(y - pred.points[0].y) < 10) {
-                        return { type: 'horizontal', index: i, data: pred };
-                    }
-                } else if (pred.type === 'vertical') {
-                    if (Math.abs(x - pred.points[0].x) < 10) {
-                        return { type: 'vertical', index: i, data: pred };
-                    }
-                } else if (pred.type === 'trendline') {
-                    for (let j = 0; j < pred.points.length; j++) {
-                        const dist = Math.sqrt(Math.pow(x - pred.points[j].x, 2) + Math.pow(y - pred.points[j].y, 2));
-                        if (dist < 15) {
-                            return { type: 'trendline', index: i, pointIndex: j, data: pred };
-                        }
-                    }
-                }
-            }
-            return null;
-        }
-
-        window.selectTool = function(tool) {
-            currentTool = tool;
-            currentPrediction = { type: tool, points: [] };
-            document.querySelectorAll('.tool-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            const toolElement = document.querySelector(`[data-tool="${tool}"]`);
-            if (toolElement) {
-                toolElement.classList.add('active');
-            }
-        };
-
-        window.clearMyPredictions = function() {
-            if (confirm('Clear all your predictions and annotations?')) {
-                userPredictions = [];
-                textAnnotations = [];
-                saveUserData();
-                drawChart();
-            }
-        };
-
-        window.toggleAdminDraw = function() {
-            if (!isAuthenticated) {
-                alert('Please login as admin first');
-                return;
-            }
-            adminDrawMode = !adminDrawMode;
-            const btn = document.getElementById('drawBtn');
-            const finishBtn = document.getElementById('finishBtn');
-            
-            if (adminDrawMode) {
-                btn.classList.add('active');
-                finishBtn.style.display = 'block';
-                currentAdminLine = [];
+        // ============ AUTH STATE LISTENER ============
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUser = user;
+                showApp();
+                loadContacts();
             } else {
-                btn.classList.remove('active');
-                finishBtn.style.display = 'none';
+                currentUser = null;
+                showAuth();
+                if (unsubscribeContacts) {
+                    unsubscribeContacts();
+                    unsubscribeContacts = null;
+                }
+            }
+        });
+
+        // ============ SHOW/HIDE SCREENS ============
+        function showAuth() {
+            document.getElementById('authContainer').style.display = 'flex';
+            document.getElementById('appContainer').classList.remove('active');
+        }
+
+        function showApp() {
+            document.getElementById('authContainer').style.display = 'none';
+            document.getElementById('appContainer').classList.add('active');
+            document.getElementById('userEmailHeader').textContent = currentUser.email;
+            document.getElementById('userAvatarHeader').textContent = currentUser.email.charAt(0).toUpperCase();
+        }
+
+        // ============ AUTH TAB SWITCHING ============
+        window.switchAuthTab = function(tab) {
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+            
+            if (tab === 'login') {
+                document.querySelector('.auth-tab:first-child').classList.add('active');
+                document.getElementById('loginForm').classList.add('active');
+            } else {
+                document.querySelector('.auth-tab:last-child').classList.add('active');
+                document.getElementById('registerForm').classList.add('active');
+            }
+            
+            hideAuthMessages();
+        };
+
+        function hideAuthMessages() {
+            document.getElementById('authError').classList.remove('show');
+            document.getElementById('authSuccess').classList.remove('show');
+        }
+
+        function showAuthError(message) {
+            const el = document.getElementById('authError');
+            el.textContent = message;
+            el.classList.add('show');
+        }
+
+        function showAuthSuccess(message) {
+            const el = document.getElementById('authSuccess');
+            el.textContent = message;
+            el.classList.add('show');
+        }
+
+        // ============ LOGIN ============
+        window.handleLogin = async function(e) {
+            e.preventDefault();
+            hideAuthMessages();
+            
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const btn = document.getElementById('loginBtn');
+            
+            if (!email || !password) {
+                showAuthError('Please enter email and password');
+                return;
+            }
+            
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner" style="width:20px;height:20px;border-width:2px;margin:0"></span> Logging in...';
+            
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                showToast('Welcome back!');
+            } catch (error) {
+                console.error('Login error:', error);
+                let message = 'Login failed. Please try again.';
+                if (error.code === 'auth/user-not-found') message = 'No account found with this email.';
+                else if (error.code === 'auth/wrong-password') message = 'Incorrect password.';
+                else if (error.code === 'auth/invalid-email') message = 'Invalid email address.';
+                else if (error.code === 'auth/invalid-credential') message = 'Invalid email or password.';
+                showAuthError(message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<span>🔐</span> Login';
             }
         };
 
-        window.finishAdminLine = async function() {
-            if (currentAdminLine.length > 1) {
-                adminLines.push([...currentAdminLine]);
+        // ============ REGISTER ============
+        window.handleRegister = async function(e) {
+            e.preventDefault();
+            hideAuthMessages();
+            
+            const name = document.getElementById('registerName').value.trim();
+            const email = document.getElementById('registerEmail').value.trim();
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            const btn = document.getElementById('registerBtn');
+            
+            if (!name || !email || !password) {
+                showAuthError('Please fill in all fields');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showAuthError('Password must be at least 6 characters');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showAuthError('Passwords do not match');
+                return;
+            }
+            
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner" style="width:20px;height:20px;border-width:2px;margin:0"></span> Creating account...';
+            
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 
-                await addDoc(collection(db, 'adminDrawings'), {
-                    line: currentAdminLine,
-                    timestamp: new Date()
+                // Save user profile to Firestore
+                await setDoc(doc(db, 'users', userCredential.user.uid), {
+                    name: name,
+                    email: email,
+                    createdAt: new Date().toISOString()
                 });
                 
-                currentAdminLine = [];
-                adminDrawMode = false;
-                document.getElementById('drawBtn').classList.remove('active');
-                document.getElementById('finishBtn').style.display = 'none';
-                drawChart();
+                showToast('Account created successfully!');
+            } catch (error) {
+                console.error('Register error:', error);
+                let message = 'Registration failed. Please try again.';
+                if (error.code === 'auth/email-already-in-use') message = 'Email is already registered.';
+                else if (error.code === 'auth/invalid-email') message = 'Invalid email address.';
+                else if (error.code === 'auth/weak-password') message = 'Password is too weak.';
+                showAuthError(message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<span>✨</span> Create Account';
             }
         };
 
-        window.clearAdminDrawings = async function() {
-            if (!isAuthenticated || !confirm('Clear the entire chart? This will remove all admin drawings.')) return;
+        // ============ LOGOUT ============
+        window.handleLogout = async function() {
+            if (!confirm('Are you sure you want to logout?')) return;
             
-            adminLines = [];
-            currentAdminLine = [];
-            
-            const querySnapshot = await getDocs(collection(db, 'adminDrawings'));
-            querySnapshot.forEach(async (document) => {
-                await deleteDoc(doc(db, 'adminDrawings', document.id));
-            });
-            
-            drawChart();
+            try {
+                await signOut(auth);
+                contacts = [];
+                showToast('Logged out successfully!');
+            } catch (error) {
+                console.error('Logout error:', error);
+                showToast('Logout failed!', true);
+            }
         };
 
-        canvas.addEventListener('mousedown', (e) => {
-            const rect = canvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            // Admin drawing
-            if (adminDrawMode && isAuthenticated) {
-                currentAdminLine.push({ x, y });
-                isAdminDrawing = true;
-                drawChart();
-                return;
-            }
-
-            // Check if clicking on existing element
-            const element = getElementAtPosition(x, y);
-            if (element && e.button === 2) { // Right click to delete
-                e.preventDefault();
-                if (element.type === 'text') {
-                    textAnnotations.splice(element.index, 1);
-                } else {
-                    userPredictions.splice(element.index, 1);
-                }
-                saveUserData();
-                drawChart();
-                return;
-            }
-
-            if (element) {
-                selectedElement = element;
-                isDragging = true;
-                dragOffset = { x, y };
-                return;
-            }
-
-            // Drawing new elements
-            if (!currentTool) return;
-
-            if (currentTool === 'text') {
-                const overlay = document.getElementById('textInputOverlay');
-                overlay.style.display = 'block';
-                overlay.style.left = e.clientX + 'px';
-                overlay.style.top = e.clientY + 'px';
-                document.getElementById('textInput').value = '';
-                document.getElementById('textInput').focus();
-                window.pendingTextPosition = { x, y };
-                return;
-            }
-
-            if (currentTool === 'horizontal' || currentTool === 'vertical') {
-                currentPrediction.points = [{ x, y }];
-                userPredictions.push({ ...currentPrediction });
-                saveUserData();
-                currentPrediction = { type: currentTool, points: [] };
-                drawChart();
-            } else if (currentTool === 'trendline') {
-                currentPrediction.points.push({ x, y });
-                if (currentPrediction.points.length === 2) {
-                    userPredictions.push({ ...currentPrediction });
-                    saveUserData();
-                    currentPrediction = { type: currentTool, points: [] };
-                }
-                drawChart();
-            }
-        });
-
-        canvas.addEventListener('mousemove', (e) => {
-            const rect = canvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            // Admin continuous drawing
-            if (adminDrawMode && isAuthenticated && isAdminDrawing) {
-                currentAdminLine.push({ x, y });
-                drawChart();
-                return;
-            }
-
-            // User trendline preview
-            if (currentTool === 'trendline' && currentPrediction.points.length === 1) {
-                currentPrediction.points[1] = { x, y };
-                drawChart();
-                return;
-            }
-
-            // Dragging elements
-            if (isDragging && selectedElement) {
-                if (selectedElement.type === 'horizontal') {
-                    userPredictions[selectedElement.index].points[0].y = y;
-                } else if (selectedElement.type === 'vertical') {
-                    userPredictions[selectedElement.index].points[0].x = x;
-                } else if (selectedElement.type === 'trendline') {
-                    userPredictions[selectedElement.index].points[selectedElement.pointIndex] = { x, y };
-                } else if (selectedElement.type === 'text') {
-                    textAnnotations[selectedElement.index].x = x;
-                    textAnnotations[selectedElement.index].y = y;
-                }
-                saveUserData();
-                drawChart();
-            }
-        });
-
-        canvas.addEventListener('mouseup', () => {
-            if (adminDrawMode && isAuthenticated) {
-                isAdminDrawing = false;
-            }
-            isDragging = false;
-            selectedElement = null;
-        });
-
-        canvas.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-        });
-
-        // Touch support
-        canvas.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            const touch = e.touches[0];
-            const mouseEvent = new MouseEvent('mousedown', {
-                clientX: touch.clientX,
-                clientY: touch.clientY,
-                button: 0
-            });
-            canvas.dispatchEvent(mouseEvent);
-        });
-
-        canvas.addEventListener('touchmove', (e) => {
-            e.preventDefault();
-            const touch = e.touches[0];
-            const mouseEvent = new MouseEvent('mousemove', {
-                clientX: touch.clientX,
-                clientY: touch.clientY
-            });
-            canvas.dispatchEvent(mouseEvent);
-        });
-
-        canvas.addEventListener('touchend', (e) => {
-            e.preventDefault();
-            const mouseEvent = new MouseEvent('mouseup', {});
-            canvas.dispatchEvent(mouseEvent);
-        });
-
-        window.addTextAnnotation = function() {
-            const text = document.getElementById('textInput').value;
-            if (!text) return;
+        // ============ LOAD CONTACTS (USER SPECIFIC) ============
+        function loadContacts() {
+            if (!currentUser) return;
             
-            const annotation = {
-                content: text,
-                x: window.pendingTextPosition.x,
-                y: window.pendingTextPosition.y
+            // Query contacts that belong to the current user
+            const q = query(
+                collection(db, 'contacts'), 
+                where('userId', '==', currentUser.uid),
+                orderBy('createdAt', 'desc')
+            );
+            
+            unsubscribeContacts = onSnapshot(q, (snapshot) => {
+                contacts = [];
+                snapshot.forEach(doc => {
+                    contacts.push({ id: doc.id, ...doc.data() });
+                });
+                renderContacts();
+                updateStats();
+            }, (error) => {
+                console.error('Error loading contacts:', error);
+                showToast('Failed to load contacts', true);
+            });
+        }
+
+        // ============ RENDER CONTACTS ============
+        function renderContacts() {
+            const grid = document.getElementById('contactsGrid');
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const favoriteFilter = document.getElementById('favoriteFilter').value;
+
+            let filtered = contacts.filter(contact => {
+                const matchesSearch = contact.name.toLowerCase().includes(searchTerm) || 
+                                     contact.email.toLowerCase().includes(searchTerm);
+                const matchesCategory = categoryFilter === 'all' || contact.category === categoryFilter;
+                const matchesFavorite = favoriteFilter === 'all' || (favoriteFilter === 'favorites' && contact.favorite);
+                return matchesSearch && matchesCategory && matchesFavorite;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1/-1;">
+                        <div class="icon">📧</div>
+                        <h3>${contacts.length === 0 ? 'No contacts yet' : 'No contacts found'}</h3>
+                        <p>${contacts.length === 0 ? 'Add your first contact to get started!' : 'Try adjusting your search or filters'}</p>
+                        ${contacts.length === 0 ? '<button class="add-btn-header" onclick="openAddModal()">➕ Add Contact</button>' : ''}
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(contact => `
+                <div class="contact-card">
+                    <button class="favorite-btn" onclick="toggleFavorite('${contact.id}')">${contact.favorite ? '⭐' : '☆'}</button>
+                    <div class="contact-header">
+                        <img src="${contact.avatar || generateAvatar(contact.name)}" alt="${contact.name}" class="contact-avatar" onerror="this.src='${generateAvatar(contact.name)}'">
+                        <div class="contact-info">
+                            <h3>${contact.name}</h3>
+                            <div class="email">${contact.email}</div>
+                        </div>
+                    </div>
+                    <div class="contact-details">
+                        ${contact.phone ? `<div class="detail-row"><span>📱</span> ${contact.phone}</div>` : ''}
+                        ${contact.company ? `<div class="detail-row"><span>🏢</span> ${contact.company}</div>` : ''}
+                        ${contact.notes ? `<div class="detail-row"><span>📝</span> ${contact.notes.substring(0, 50)}${contact.notes.length > 50 ? '...' : ''}</div>` : ''}
+                    </div>
+                    <span class="contact-category category-${contact.category}">${contact.category}</span>
+                    <div class="contact-actions">
+                        <button class="action-btn copy" onclick="copyEmail('${contact.email}')">📋 Copy</button>
+                        <button class="action-btn edit" onclick="editContact('${contact.id}')">✏️ Edit</button>
+                        <button class="action-btn delete" onclick="deleteContact('${contact.id}')">🗑️ Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function generateAvatar(name) {
+            const encoded = encodeURIComponent(name || 'User');
+            return `https://ui-avatars.com/api/?name=${encoded}&background=667eea&color=fff&size=128`;
+        }
+
+        // ============ UPDATE STATS ============
+        function updateStats() {
+            document.getElementById('totalContacts').textContent = contacts.length;
+            document.getElementById('favoriteContacts').textContent = contacts.filter(c => c.favorite).length;
+            document.getElementById('workContacts').textContent = contacts.filter(c => c.category === 'work').length;
+            document.getElementById('personalContacts').textContent = contacts.filter(c => c.category === 'personal').length;
+        }
+
+        // ============ MODAL FUNCTIONS ============
+        window.openAddModal = function() {
+            editingContactId = null;
+            document.getElementById('modalTitle').textContent = 'Add New Contact';
+            document.getElementById('modalIcon').textContent = '👤';
+            document.getElementById('saveButtonText').textContent = 'Save Contact';
+            clearForm();
+            document.getElementById('contactModal').classList.add('open');
+        };
+
+        window.editContact = function(id) {
+            const contact = contacts.find(c => c.id === id);
+            if (!contact) return;
+
+            editingContactId = id;
+            document.getElementById('modalTitle').textContent = 'Edit Contact';
+            document.getElementById('modalIcon').textContent = '✏️';
+            document.getElementById('saveButtonText').textContent = 'Update Contact';
+
+            document.getElementById('inputName').value = contact.name || '';
+            document.getElementById('inputEmail').value = contact.email || '';
+            document.getElementById('inputPhone').value = contact.phone || '';
+            document.getElementById('inputCategory').value = contact.category || 'personal';
+            document.getElementById('inputCompany').value = contact.company || '';
+            document.getElementById('inputAvatar').value = contact.avatar || '';
+            document.getElementById('inputNotes').value = contact.notes || '';
+
+            document.getElementById('contactModal').classList.add('open');
+        };
+
+        window.closeModal = function() {
+            document.getElementById('contactModal').classList.remove('open');
+            clearForm();
+        };
+
+        function clearForm() {
+            document.getElementById('inputName').value = '';
+            document.getElementById('inputEmail').value = '';
+            document.getElementById('inputPhone').value = '';
+            document.getElementById('inputCategory').value = 'personal';
+            document.getElementById('inputCompany').value = '';
+            document.getElementById('inputAvatar').value = '';
+            document.getElementById('inputNotes').value = '';
+        }
+
+        // ============ SAVE CONTACT ============
+        window.saveContact = async function() {
+            if (!currentUser) {
+                showToast('Please login first!', true);
+                return;
+            }
+            
+            const name = document.getElementById('inputName').value.trim();
+            const email = document.getElementById('inputEmail').value.trim();
+            const phone = document.getElementById('inputPhone').value.trim();
+            const category = document.getElementById('inputCategory').value;
+            const company = document.getElementById('inputCompany').value.trim();
+            const avatar = document.getElementById('inputAvatar').value.trim();
+            const notes = document.getElementById('inputNotes').value.trim();
+
+            if (!name || !email) {
+                showToast('Name and Email are required!', true);
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                showToast('Please enter a valid email address!', true);
+                return;
+            }
+
+            const contactData = {
+                name,
+                email,
+                phone,
+                category,
+                company,
+                avatar,
+                notes,
+                userId: currentUser.uid,
+                updatedAt: new Date().toISOString()
             };
-            
-            textAnnotations.push(annotation);
-            saveUserData();
-            
-            document.getElementById('textInputOverlay').style.display = 'none';
-            drawChart();
-        };
 
-        window.handleInvest = function() {
-            window.open('https://zapk1.github.io/fxedge/', '_blank');
-        };
-
-        window.handleWithdrawal = function() {
-            alert('Withdrawal functionality - Contact support for withdrawal requests');
-        };
-
-        window.openSettings = function() {
-            document.getElementById('settingsModal').classList.add('open');
-        };
-
-        window.closeSettings = function() {
-            document.getElementById('settingsModal').classList.remove('open');
-        };
-
-        window.authenticate = function() {
-            const password = document.getElementById('passwordInput').value;
-            if (password === 'VNAXXTTM') {
-                isAuthenticated = true;
-                document.getElementById('adminTools').classList.add('admin');
-                document.getElementById('logoutBtn').classList.add('show');
-                alert('Admin login successful!');
-                closeSettings();
-            } else {
-                alert('Incorrect password');
+            try {
+                if (editingContactId) {
+                    await updateDoc(doc(db, 'contacts', editingContactId), contactData);
+                    showToast('Contact updated successfully!');
+                } else {
+                    contactData.createdAt = new Date().toISOString();
+                    contactData.favorite = false;
+                    await addDoc(collection(db, 'contacts'), contactData);
+                    showToast('Contact added successfully!');
+                }
+                closeModal();
+            } catch (error) {
+                console.error('Save error:', error);
+                showToast('Failed to save contact!', true);
             }
         };
 
-        window.logout = function() {
-            isAuthenticated = false;
-            adminDrawMode = false;
-            document.getElementById('adminTools').classList.remove('admin');
-            document.getElementById('logoutBtn').classList.remove('show');
-            document.getElementById('drawBtn').classList.remove('active');
-            document.getElementById('finishBtn').style.display = 'none';
-            alert('Logged out successfully');
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // ============ DELETE CONTACT ============
+        window.deleteContact = async function(id) {
+            if (!confirm('Are you sure you want to delete this contact?')) return;
+
+            try {
+                await deleteDoc(doc(db, 'contacts', id));
+                showToast('Contact deleted!');
+            } catch (error) {
+                console.error('Delete error:', error);
+                showToast('Failed to delete contact!', true);
+            }
         };
 
-        // Load admin drawings from Firestore (everyone sees these)
-        onSnapshot(collection(db, 'adminDrawings'), (snapshot) => {
-            adminLines = [];
-            snapshot.forEach((doc) => {
-                adminLines.push(doc.data().line);
-            });
-            drawChart();
-        });
+        // ============ TOGGLE FAVORITE ============
+        window.toggleFavorite = async function(id) {
+            const contact = contacts.find(c => c.id === id);
+            if (!contact) return;
 
-        drawChart();
+            try {
+                await updateDoc(doc(db, 'contacts', id), {
+                    favorite: !contact.favorite
+                });
+                showToast(contact.favorite ? 'Removed from favorites' : 'Added to favorites!');
+            } catch (error) {
+                console.error('Favorite error:', error);
+            }
+        };
+
+        // ============ COPY EMAIL ============
+        window.copyEmail = function(email) {
+            navigator.clipboard.writeText(email).then(() => {
+                showToast('Email copied to clipboard!');
+            }).catch(() => {
+                const input = document.createElement('input');
+                input.value = email;
+                document.body.appendChild(input);
+                input.select();
+                document.execCommand('copy');
+                document.body.removeChild(input);
+                showToast('Email copied to clipboard!');
+            });
+        };
+
+        // ============ FILTER CONTACTS ============
+        window.filterContacts = function() {
+            renderContacts();
+        };
+
+        // ============ THEME ============
+        window.toggleTheme = function() {
+            document.body.classList.toggle('light-theme');
+            const icon = document.getElementById('themeIcon');
+            icon.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
+            localStorage.setItem('emailme-theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+        };
+
+        if (localStorage.getItem('emailme-theme') === 'light') {
+            document.body.classList.add('light-theme');
+            document.getElementById('themeIcon').textContent = '☀️';
+        }
+
+        // ============ TOAST ============
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast show' + (isError ? ' error' : '');
+            setTimeout(() => {
+                toast.className = 'toast';
+            }, 3000);
+        }
     </script>
 </body>
 </html>
