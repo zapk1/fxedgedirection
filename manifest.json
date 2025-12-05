@@ -1,7 +1,7 @@
 {
-  "name": "Fxedge Direction",
-  "short_name": "Fxedge Direction",
-  "description": "Spot the market direction cash 25 times deposit profit",
+  "name": "Emailme",
+  "short_name": "Emailme",
+  "description": "Store customers Emails",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#F5E427",
